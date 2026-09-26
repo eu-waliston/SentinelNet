@@ -1,4 +1,4 @@
-# 🛡️ SentinelNet
+<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/98207229-7007-4965-ba05-ffaf0c4e93cf" />
 
 > Plataforma de Threat Intelligence, correlação de infraestrutura e análise de risco para detecção de ameaças cibernéticas.
 
