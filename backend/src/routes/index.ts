@@ -6,6 +6,9 @@ import healthRoutes
 import infrastructureRoutes
   from "./infrastructure.routes.js";
 
+import relationshipRoutes
+  from "./relationship.routes.js";
+
 const router = Router();
 
 router.use(
@@ -16,6 +19,11 @@ router.use(
 router.use(
   "/infrastructure",
   infrastructureRoutes
+);
+
+router.use(
+  "/relationships",
+  relationshipRoutes
 );
 
 export default router;

@@ -30,7 +30,7 @@ export interface IRelationship extends Document {
 
 const relationshipSchema = new Schema<IRelationship>({
     source: {
-        typer: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Infrastructure",
         required: true,
         index: true

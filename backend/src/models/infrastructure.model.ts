@@ -17,6 +17,8 @@ export interface IInfrastruture extends Document {
 
     createdAt: Date;
     updatedAt: Date;
+
+    evidence: string;
 }
 
 const infraestructureSchema = new Schema<IInfrastruture>({
@@ -64,6 +66,11 @@ const infraestructureSchema = new Schema<IInfrastruture>({
     metadata: {
         type: Schema.Types.Mixed,
         default: {}
+    },
+    evidence: {
+        source: String,
+        collectedAt: Date,
+        value: Schema.Types.Mixed
     }
 },
     {
