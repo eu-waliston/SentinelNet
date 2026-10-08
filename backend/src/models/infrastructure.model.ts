@@ -1,5 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
+
+
 export type InfrastructureType = | "DOMAIN" | "IP" | "ASN" | "CERTIFICATE";
 
 export interface IInfrastruture extends Document {
@@ -18,7 +20,14 @@ export interface IInfrastruture extends Document {
     createdAt: Date;
     updatedAt: Date;
 
-    evidence: string;
+    evidence: InfrastructureEvidence[];
+}
+
+export interface InfrastructureEvidence {
+    source: string;
+    collectedAt: Date;
+    type: string;
+    value: Record<string, unknown>;
 }
 
 const infraestructureSchema = new Schema<IInfrastruture>({
@@ -67,10 +76,33 @@ const infraestructureSchema = new Schema<IInfrastruture>({
         type: Schema.Types.Mixed,
         default: {}
     },
+
     evidence: {
-        source: String,
-        collectedAt: Date,
-        value: Schema.Types.Mixed
+        type: [
+            {
+                source: {
+                    type: String,
+                    required: true
+                },
+
+                collectedAt: {
+                    type: Date,
+                    required: true
+                },
+
+                type: {
+                    type: String,
+                    required: true
+                },
+
+                value: {
+                    type: Schema.Types.Mixed,
+                    default: {}
+                }
+            }
+        ],
+
+        default: []
     }
 },
     {

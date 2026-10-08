@@ -4,12 +4,17 @@ import {
   createInfrastructure,
   listInfrastructure,
   getInfrastructure,
-  getInfrastructureGraph
+  getInfrastructureGraph,
+  collectIntelligence
 } from "../controllers/infrastructure.controller.js";
 
 import {
   getRelationships
 } from "../controllers/relationship.controller.js";
+
+import {
+  analyze
+} from "../controllers/infrastructure.controller.js";
 
 const router = Router();
 
@@ -36,6 +41,16 @@ router.get(
 router.get(
   "/:id/graph",
   getInfrastructureGraph
+);
+
+router.post(
+  "/analyze",
+  analyze
+);
+
+router.post(
+  "/collect",
+  collectIntelligence
 );
 
 export default router;

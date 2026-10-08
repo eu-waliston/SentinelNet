@@ -11,6 +11,14 @@ import {
 } from "../models/infrastructure.model.js";
 import { Relationship } from "../models/relationship.model.js";
 
+import {
+  analyzeDomain
+} from "../services/intelligence.service.js";
+
+import {
+  collectDomainIntelligence
+} from "../services/intelligence-orchestrator.service.js";
+
 export async function createInfrastructure(
   req: Request,
   res: Response
@@ -183,5 +191,54 @@ export async function getInfrastructureGraph(
 
       relationships
     }
+  });
+}
+
+export async function analyze(
+  req: Request,
+  res: Response
+): Promise<void> {
+  const { domain } = req.body;
+
+  if (!domain) {
+    res.status(400).json({
+      success: false,
+      message: "domain is required"
+    });
+
+    return;
+  }
+
+  const result =
+    await analyzeDomain(domain);
+
+  res.status(200).json({
+    success: true,
+    data: result
+  });
+}
+
+export async function collectIntelligence(
+  req: Request,
+  res: Response
+): Promise<void> {
+
+  const { domain } = req.body;
+
+  if (!domain) {
+    res.status(400).json({
+      success: false,
+      message: "domain is required"
+    });
+
+    return;
+  }
+
+  const result =
+    await collectDomainIntelligence(domain);
+
+  res.status(200).json({
+    success: true,
+    data: result
   });
 }
